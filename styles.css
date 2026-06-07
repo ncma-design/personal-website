@@ -1,30 +1,33 @@
+/* Body */
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
 /* Typeface */
 * {
     font-family: Roboto;
     font-size: 14px;
+    font-weight: 350;
+    color: #2f2f2f;
 }
 
 h1 {
     font-size: 24px;
+    font-weight: 700;
+    margin-top: 0px;
 }
 
 .tagline {
-    font-weight: 700;
-}
-
-/* Links */
-a {
-    text-decoration: none;
-    color: black;
-}
-
-a:active {
-    color: grey;
+    font-weight: 600;
 }
 
 /* Flex */
 .flex-container {
     display: flex;
+    height: 100vh;
 }
 
 .flex-container div {
@@ -56,10 +59,72 @@ a:active {
     gap: 15px;
 }
 
+/* Independent Scrolling */
 .gallery {
     gap: 15px;
+    overflow-y: auto;
 }
 
 .navigation {
-    position: sticky;
+    overflow-y: auto;
+}
+
+/* Hide Scrollbar */
+.gallery,
+.navigation {
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.gallery::-webkit-scrollbar,
+.navigation::-webkit-scrollbar {
+    display: none;
+}
+
+/* Table */
+table  {
+    margin-top: 30px;
+    width: 100%;
+    color: #2f2f2f;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-spacing: 10px;
+}
+
+th {
+    font-weight: 600;
+    text-align: left;
+}
+
+td,
+th {
+    vertical-align: middle;
+    padding: 0px 0px 10px 0px;
+}
+
+td,
+th {
+    border-bottom: 1px solid #2f2f2f;
+}
+
+tr:last-child td{
+    border-bottom: none;
+}
+
+th:nth-child(1),
+td:nth-child(1),
+th:nth-child(3),
+td:nth-child(3) {
+    width: 60px;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #2f2f2f;
+}
+
+a:active {
+    color:grey;
 }
