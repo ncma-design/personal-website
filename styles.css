@@ -78,7 +78,9 @@ a:active {
 }
 
 .flex-container .navigation,
+.flex-container .mobile-navigation,
 .flex-container .gallery,
+.flex-container .mobile-gallery,
 .flex-container .content {
     padding: 40px;
 }
@@ -90,6 +92,7 @@ a:active {
 }
 
 .flex-container .gallery,
+.flex-container .mobile-gallery,
 .flex-container .content {
     flex: 3 1 0%;
     display: flex;
@@ -122,7 +125,8 @@ html {
 }
 
 /* Independent Scrolling */
-.gallery {
+.gallery,
+.mobile-gallery {
     gap: 15px;
     overflow-y: auto;
 }
@@ -138,6 +142,7 @@ html {
 .navigation,
 .content,
 .mobile-navigation,
+.mobile-gallery,
 body {
 
     scrollbar-width: none;
@@ -148,6 +153,7 @@ body {
 .navigation::-webkit-scrollbar,
 .content::-webkit-scrollbar,
 .mobile-navigation::-webkit-scrollbar,
+.mobile-gallery::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
 }
@@ -275,7 +281,10 @@ li {
     }
 
     .navigation,
-    .empty {
+    .empty,
+    .flex-container .mobile-gallery,
+    .flex-container .mobile-gallery .left-gallery,
+    .flex-container .mobile-gallery .right-gallery {
         display: none;
     }
 
@@ -291,18 +300,20 @@ li {
 
     }
 
-    header {
-        position: sticky;
-    }
-
     .gallery,
-    .content {
+    .content,
+    .mobile-navigation {
         width: 100%;
     }
 
     .flex-container .gallery,
-    .flex-container .content {
+    .flex-container .content,
+    .flex-container .mobile-navigation {
     padding-top: 0px;
+    }
+
+    .desktop-only {
+        display: none;
     }
 
 }
