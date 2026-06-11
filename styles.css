@@ -1,7 +1,58 @@
+/* Mobile Menus */
 /* Header */
 .mobile-header,
 .mobile-footer {
     display: none;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        backdrop-filter 0.5s ease,
+        -webkit-backdrop-filter 0.5s ease; 
+
+    z-index: 1000;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+}
+
+.overlay-navigation {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+#menu-button,
+#close-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    font: inherit;
+    color: inherit;
+
+    cursor: pointer;
 }
 
 /* Body */
@@ -61,10 +112,16 @@ h2 {
 a {
     text-decoration: none;
     color: #2f2f2f;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #555555;
+    letter-spacing: 0.2px;
 }
 
 a:active {
-    color:grey;
+    color: #000000;
 }
 
 /* Flex */
@@ -78,21 +135,12 @@ a:active {
 }
 
 .flex-container .navigation,
-.flex-container .mobile-navigation,
 .flex-container .gallery,
-.flex-container .mobile-gallery,
 .flex-container .content {
     padding: 40px;
 }
 
-.flex-container .mobile-navigation {
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 40px;
-}
-
 .flex-container .gallery,
-.flex-container .mobile-gallery,
 .flex-container .content {
     flex: 3 1 0%;
     display: flex;
@@ -125,15 +173,13 @@ html {
 }
 
 /* Independent Scrolling */
-.gallery,
-.mobile-gallery {
+.gallery {
     gap: 15px;
     overflow-y: auto;
 }
 
 .navigation,
-.content,
-.mobile-navigation {
+.content {
     overflow-y: auto;
 }
 
@@ -141,8 +187,7 @@ html {
 .gallery,
 .navigation,
 .content,
-.mobile-navigation,
-.mobile-gallery,
+.overlay-navigation,
 body {
 
     scrollbar-width: none;
@@ -152,8 +197,7 @@ body {
 .gallery::-webkit-scrollbar,
 .navigation::-webkit-scrollbar,
 .content::-webkit-scrollbar,
-.mobile-navigation::-webkit-scrollbar,
-.mobile-gallery::-webkit-scrollbar,
+.overlay-navigation::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
 }
@@ -229,20 +273,24 @@ body::-webkit-scrollbar {
     text-align: right;
 }
 
-.mobile-header-table {
+.mobile-header-table,
+.overlay-header {
     width: 100%;
 }
 
-.mobile-header-table td {
+.mobile-header-table td,
+.overlay-header td {
     text-align: center;
     vertical-align: top;
 }
 
-.mobile-header-table td:nth-child(1) {
+.mobile-header-table td:nth-child(1),
+.overlay-header td:nth-child(1) {
     text-align: left;
 }
 
-.mobile-header-table td:nth-child(2) {
+.mobile-header-table td:nth-child(2),
+.overlay-header td:nth-child(2) {
     text-align: right;
 }
 
@@ -272,19 +320,16 @@ li {
 
 /* Media Query - Phones*/
 @media only screen and (max-width: 600px) {
-    * {
+    /* * {
         font-size: 20px;
     }
     
     .caption {
         font-size: 16px;
-    }
+    } */
 
     .navigation,
-    .empty,
-    .flex-container .mobile-gallery,
-    .flex-container .mobile-gallery .left-gallery,
-    .flex-container .mobile-gallery .right-gallery {
+    .empty {
         display: none;
     }
 
@@ -301,14 +346,12 @@ li {
     }
 
     .gallery,
-    .content,
-    .mobile-navigation {
+    .content {
         width: 100%;
     }
 
     .flex-container .gallery,
-    .flex-container .content,
-    .flex-container .mobile-navigation {
+    .flex-container .content {
     padding-top: 0px;
     }
 
