@@ -176,6 +176,7 @@ html {
 .gallery {
     gap: 15px;
     overflow-y: auto;
+    height: 100vh;
 }
 
 .navigation,
@@ -318,6 +319,19 @@ li {
     gap: 10px;
 }
 
+/* Scroll Fade-In */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    will-change: opacity, transform;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 /* Media Query - Phones*/
 @media only screen and (max-width: 600px) {
     /* * {
@@ -340,7 +354,7 @@ li {
 
     position: sticky;
     top: 0;
-
+    z-index: 2000;
     background: white;
 
     }
