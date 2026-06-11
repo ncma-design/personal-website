@@ -332,6 +332,66 @@ li {
     transform: translateY(0) scale(1);
 }
 
+/* Image Zoom In */
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+
+    z-index: 9999;
+
+    cursor: zoom-out;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    
+    transform: scale(0.98);
+    opacity: 0;
+
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.45s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.gallery img {
+    filter: grayscale(100%) contrast(1.05) brightness(1.05);
+    transition: filter 0.5s ease, transform 0.5s ease;
+    transform: scale(1);
+    cursor: zoom-in;
+}
+
+.gallery img:hover {
+    filter: grayscale(0%) contrast(1) brightness(1);
+    transform: scale(1.01);
+}
+
 /* Media Query - Phones*/
 @media only screen and (max-width: 600px) {
     /* * {
