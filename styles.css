@@ -60,7 +60,7 @@ html,
 body {
     margin: 0;
     height: 100%;
-    overflow-y:auto;
+    overflow: hidden;
 }
 
 /* Typeface */
@@ -176,6 +176,12 @@ html {
 .gallery {
     gap: 15px;
     overflow-y: auto;
+    height: 100vh;
+    overscroll-behavior: contain;
+}
+
+.navigation {
+    flex: 1;
     height: 100vh;
 }
 
@@ -380,17 +386,32 @@ li {
     opacity: 1;
 }
 
-.gallery img {
-    filter: grayscale(100%) contrast(1.05) brightness(1.05);
-    transition: filter 0.5s ease, transform 0.5s ease;
-    transform: scale(1);
-    cursor: zoom-in;
+.img-wrap {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
-.gallery img:hover {
-    filter: grayscale(0%) contrast(1) brightness(1);
-    transform: scale(1.01);
+.img-wrap.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
+
+.img-wrap img {
+    filter: grayscale(100%) contrast(1.05) brightness(1.05);
+    transition: filter 0.5s ease;
+    display: block;
+    width: 100%;
+}
+
+.img-wrap:hover img {
+    filter: grayscale(0%) contrast(1) brightness(1);
+}
+
+.img-wrap.visible:hover {
+    transform: translateY(0) scale(1.01);
+}
+
 
 /* Media Query - Phones*/
 @media only screen and (max-width: 600px) {
